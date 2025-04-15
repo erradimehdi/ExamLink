@@ -39,7 +39,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 500);
 });
 
-// Redirection des boutons (avec transition)
+///////////////////////////////////////////////////////////////
+// Redirection des boutons (avec transition) // cela fait pour le bouton "S'inscrire" et "Se connecter"
 function signUp() {
     // Ajoute la classe de transition au body
     document.body.classList.add('page-transition');
@@ -57,3 +58,43 @@ function logIn() {
         window.location.href = 'login.html';
     }, 500); // 500ms (0.5s) correspond à la durée de la transition
 }
+/////////////////////////////////////////////////////////////
+
+// Animation de la page de inscription
+document.addEventListener('DOMContentLoaded', () => {
+    document.body.classList.add('loaded');
+    document.querySelector('.signup-container').classList.add('loaded');
+  });
+
+//progress bar logic
+document.addEventListener('DOMContentLoaded', function() {
+    // Obtient le nom du fichier de la page actuelle
+    const currentPage = window.location.pathname.split('/').pop().split('.')[0];
+
+    // Sélectionne tous les points de la barre de progression
+    const pageDots = document.querySelectorAll('.page-dot');
+
+    // Parcourt tous les points et ajoute la classe "active" à celui correspondant à la page actuelle
+    pageDots.forEach(dot => {
+        if (dot.dataset.page === currentPage) {
+            dot.classList.add('active');
+        }
+    });
+});
+
+//boutons
+function goBack() {
+    window.history.back();
+  }
+  
+  function goNext() {
+    const form = document.querySelector('.signup-form');
+    if (form.checkValidity()) {
+      window.location.href = 'confirmation.html'; // Page suivante
+    } else {
+      form.reportValidity(); // Affiche les erreurs de validation
+    }
+  }
+  
+
+

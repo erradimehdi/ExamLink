@@ -9,22 +9,33 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body class="page-transition">
-  <div class="main-wrapper">
-    <main class="login-container">
-      <img src="../public/css/image.png" alt="Logo de ExamLink" class="logo" width="64" height="64" />
-      <h1 class="site-title">Bienvenue sur ExamLink</h1>
-      <p class="site-description">Votre plateforme d'examens sécurisée et fiable.</p>
-      <hr />
-      <button class="btn btn-primary" onclick="signUp()">S'inscrire</button>
-      <button class="btn btn-secondary" onclick="logIn()">Se connecter</button>
-    </main>
-  </div>
+    <!--Progress bar-->
+    <div class="top-bar">
+        <div class="page-indicator">
+            <span class="page-dot" data-page="index"></span>
+            <span class="page-dot" data-page="signup"></span>
+            <span class="page-dot" data-page="login"></span>
+        </div>
+    </div>
+    <span class="page-dot" data-page="index"></span>
 
-  <footer class="footer">
-    <p>Sécurité | Fiabilité | Performance</p>
-    <p>© 2025 Exam Platform. All rights reserved.</p>
-  </footer>
+    <!--main-->
+    <div class="main-wrapper">
+        <main class="login-container">
+            <img src="../public/css/image.png" alt="Logo de ExamLink" class="logo" width="64" height="64" />
+            <h1 class="site-title">Bienvenue sur ExamLink</h1>
+            <p class="site-description">Votre plateforme d'examens sécurisée et fiable.</p>
+            <hr />
+            <button class="btn btn-primary" onclick="signUp()">S'inscrire</button>
+            <button class="btn btn-secondary" onclick="logIn()">Se connecter</button>
+        </main>
+    </div>
 
-  <script src="../public/js/main.js"></script>
+    <footer class="footer">
+        <p>Sécurité | Fiabilité | Performance</p>
+        <p>© 2025 Exam Platform. All rights reserved.</p>
+    </footer>
+
+    <script src="../public/js/main.js"></script>
 </body>
 </html>
