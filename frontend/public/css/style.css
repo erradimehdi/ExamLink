@@ -112,7 +112,7 @@ body {
     flex-grow: 1;
   }
   
-  .login-container {
+  .index-login-container {
     text-align: center;
     padding: 2rem;
     background-color: rgba(255, 255, 255, 0.05);
@@ -325,4 +325,101 @@ body {
       font-size: 1rem;
     }
   }
+  
+
+/* LOGIN style */
+
+  
+  /* .page-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #444;
+    transition: background 0.3s ease;
+  } */
+  /* .page-dot.active {
+    background: #55acee;
+  }
+   */
+  /* Centrage du contenu */
+  .container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Boîte de connexion */
+  .login-container {
+    text-align: center;
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 500px;
+    width: 90%;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  .login-container.loaded {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
+  .logo {
+    width: 64px;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+  
+  .form-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  /* Formulaire */
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: none;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: center; /* Centrage horizontal */
+    gap: 12px; /* Petite marge entre les deux */
+    margin-top: 1.5rem;
+  }
+  
+  .btn-back,
+  .btn-next {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+  }
+  
+  .btn-back:hover,
+  .btn-next:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
   

@@ -60,12 +60,26 @@ function logIn() {
 }
 /////////////////////////////////////////////////////////////
 
-// Animation de la page de inscription
-document.addEventListener('DOMContentLoaded', () => {
+// Animation de la page // faire meme chose pour autre page
+function runAnimation() {
     document.body.classList.add('loaded');
-    document.querySelector('.signup-container').classList.add('loaded');
-  });
-
+  
+    const signupContainer = document.querySelector('.signup-container');
+    if (signupContainer) signupContainer.classList.add('loaded');
+  
+    const loginContainer = document.querySelector('.login-container');
+    if (loginContainer) loginContainer.classList.add('loaded');
+  }
+  
+  // Au chargement initial
+  document.addEventListener('DOMContentLoaded', runAnimation);
+  
+  // Au retour arrière (bfcache)
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) { // Si la page vient du cache bfcache
+      runAnimation();
+    }
+});
 //progress bar logic
 document.addEventListener('DOMContentLoaded', function() {
     // Obtient le nom du fichier de la page actuelle
