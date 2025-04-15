@@ -1,0 +1,104 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+    font-family: 'Inter', sans-serif;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+  }
+  
+  .main-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+  }
+  
+  .login-container {
+    text-align: center;
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 90%;
+    max-width: 400px;
+  }
+  
+  .logo {
+    display: block;
+    margin: 0 auto 1rem auto;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .site-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  
+  .site-description {
+    font-size: 1rem;
+    color: #bbbbbb;
+    margin-bottom: 1rem;
+  }
+  
+  hr {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 1rem 0;
+  }
+  
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    border: none;
+  }
+  
+  .btn-primary {
+    background-color: #55acee;
+    color: white;
+    box-shadow: 0 0 10px rgba(85, 172, 238, 0.5);
+  }
+  
+  .btn-primary:hover {
+    background-color: #448ccb;
+  }
+  
+  .btn-secondary {
+    background-color: #444;
+    color: #ddd;
+    box-shadow: 0 0 5px rgba(68, 68, 68, 0.5);
+  }
+  
+  .btn-secondary:hover {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .footer {
+    text-align: center;
+    font-size: 14px;
+    padding: 1rem 0;
+    background-color: #121212;
+    color: #999;
+  }
+  
+  /* Transition de page */
+  .page-transition {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  body.page-transition {
+    opacity: 1;
+  }
+  
