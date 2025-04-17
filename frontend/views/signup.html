@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body class="bg-dark">
+    
     <!--Progress bar-->
     <div class="top-bar">
         <div class="page-indicator">
@@ -17,95 +18,99 @@
             <span class="page-dot" data-page="login"></span>
         </div>
     </div>
-<div class="container">
-    <main class="signup-container">
-        <img src="../public/css/image.png" alt="Logo de ExamLink" class="logo">
-        <h2 class="form-title">Créer un compte</h2>
-        <form action="#" method="post" class="signup-form">
-            <div class="form-group">
-                <label for="userType">Type d’utilisateur :</label>
-                <select id="userType" name="userType" class="form-control" required>
-                    <option value="">-- Sélectionnez --</option>
-                    <option value="étudiant">Étudiant</option>
-                    <option value="enseignant">Enseignant</option>
-                </select>
-            </div>
+    <div class="container">
+        <main class="signup-container">
+            <img src="../public/css/image.png" alt="Logo de ExamLink" class="logo">
+            <h2 class="form-title">Créer un compte</h2>
+            <form action="#" method="post" class="signup-form">
+                <div class="form-group">
+                    <label for="userType">Type d’utilisateur :</label>
+                        <select id="userType" name="userType" class="form-control" required>
+                        <option value="">-- Sélectionnez --</option>
+                        <option value="étudiant">Étudiant</option>
+                        <option value="enseignant">Enseignant</option>
+                    </select>
+                </div>
 
-            <div class="form-group">
-                <label for="email">Adresse email :</label>
-                <input type="email" id="email" name="email" class="form-control" placeholder="votre.email@example.com" required>
-            </div>
+                <div class="form-group">
+                    <label for="email">Adresse email :</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="votre.email@example.com" required>
+                </div>
 
-            <div class="form-group">
-                <label for="prenom">Prénom :</label>
-                <input type="text" id="prenom" name="prenom" class="form-control" placeholder="Votre prénom" required>
-            </div>
+                <div class="form-group">
+                    <label for="prenom">Prénom :</label>
+                    <input type="text" id="prenom" name="prenom" class="form-control" placeholder="Votre prénom" required>
+                </div>
 
-            <div class="form-group">
-                <label for="nom">Nom :</label>
-                <input type="text" id="nom" name="nom" class="form-control" placeholder="Votre nom" required>
-            </div>
+                <div class="form-group">
+                    <label for="nom">Nom :</label>
+                    <input type="text" id="nom" name="nom" class="form-control" placeholder="Votre nom" required>
+                </div>
 
-            <div class="form-group">
-                <label for="dob">Date de naissance :</label>
-                <input type="date" id="dob" name="dob" class="form-control" required>
-            </div>
+                <div class="form-group">
+                    <label for="dob">Date de naissance :</label>
+                    <input type="date" id="dob" name="dob" class="form-control" required>
+                </div>
 
-            <div class="form-group">
-                <label for="sexe">Sexe :</label>
-                <select id="sexe" name="sexe" class="form-control" required>
-                    <option value="">-- Sélectionnez --</option>
-                    <option value="homme">Homme</option>
-                    <option value="femme">Femme</option>
-                </select>
-            </div>
+                <div class="form-group">
+                    <label for="sexe">Sexe :</label>
+                    <select id="sexe" name="sexe" class="form-control" required>
+                        <option value="">-- Sélectionnez --</option>
+                        <option value="homme">Homme</option>
+                        <option value="femme">Femme</option>
+                    </select>
+                </div>
 
-            <div class="form-group">
-                <label for="etablissement">Établissement :</label>
-                <select id="etablissement" name="etablissement" class="form-control" required>
-                    <option value="">-- Sélectionnez --</option>
-                    <option value="Faculté des Sciences de Tétouan (FS)">Faculté des Sciences de Tétouan (FS)</option>
-                    <option value="École Normale Supérieure de Tétouan (ENS)">École Normale Supérieure de Tétouan (ENS)</option>
-                    <option value="École Nationale des Sciences Appliquées de Tétouan (ENSA)">ENSA de Tétouan</option>
-                    <option value="Autre">Autre</option>
-                </select>
-            </div>
+                <div class="form-group">
+                    <label for="etablissement">Établissement :</label>
+                    <select id="etablissement" name="etablissement" class="form-control" required>
+                        <option value="">-- Sélectionnez --</option>
+                        <option value="Faculté des Sciences de Tétouan (FS)">Faculté des Sciences de Tétouan (FS)</option>
+                        <option value="École Normale Supérieure de Tétouan (ENS)">École Normale Supérieure de Tétouan (ENS)</option>
+                        <option value="École Nationale des Sciences Appliquées de Tétouan (ENSA)">ENSA de Tétouan</option>
+                        <option value="Autre">Autre</option>
+                    </select>
+                </div>
 
-            <div class="form-group">
-                <label for="filiere">Filière :</label>
-                <select id="filiere" name="filiere" class="form-control" required>
-                    <option value="">-- Sélectionnez --</option>
-                    <option value="SMI">Sciences Mathématiques et Informatique (SMI)</option>
-                    <option value="SMA">Sciences Mathématiques et Applications (SMA)</option>
-                    <option value="SMP">Sciences de la Matière Physique (SMP)</option>
-                    <option value="SMC">Sciences de la Matière Chimie (SMC)</option>
-                    <option value="SV">Sciences de la Vie (SV)</option>
-                    <option value="SVA">Sciences de la Vie et de la Terre (SVA)</option>
-                    <option value="GE">Géologie (GE)</option>
-                    <option value="Autre">Autre</option>
-                </select>
+                <div class="form-group">
+                    <label for="filiere">Filière :</label>
+                    <select id="filiere" name="filiere" class="form-control" required>
+                        <option value="">-- Sélectionnez --</option>
+                        <option value="SMI">Sciences Mathématiques et Informatique (SMI)</option>
+                        <option value="SMA">Sciences Mathématiques et Applications (SMA)</option>
+                        <option value="SMP">Sciences de la Matière Physique (SMP)</option>
+                        <option value="SMC">Sciences de la Matière Chimie (SMC)</option>
+                        <option value="SV">Sciences de la Vie (SV)</option>
+                        <option value="SVA">Sciences de la Vie et de la Terre (SVA)</option>
+                        <option value="GE">Géologie (GE)</option>
+                        <option value="Autre">Autre</option>
+                    </select>
+                </div>
+            </form>
+            <div class="button-group">
+                <button type="button" onclick="goBack()" class="btn-back" aria-label="Retour">
+                  <!-- Flèche gauche SVG -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="#55acee" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                    <polyline points="15 18 9 12 15 6" />
+                    </svg>
+                </button>
+              
+                <button onclick="goNext()" class="btn-next" aria-label="Suivant">
+                  <!-- Flèche droite SVG -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="#55acee" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                    <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                </button>
             </div>
-        </form>
-    </main>
+        </main>
+    </div>
 
-    <!-- les boutons -->
-    <div class="button-group">
-        <button onclick="goBack()" class="btn-back" aria-label="Retour">
-          <!-- Flèche gauche SVG -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="#55acee" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-            <polyline points="15 18 9 12 15 6" />
-          </svg>
-        </button>
       
-        <button onclick="goNext()" class="btn-next" aria-label="Suivant">
-          <!-- Flèche droite SVG -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="#55acee" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-            <polyline points="9 18 15 12 9 6" />
-          </svg>
-        </button>
-      </div>
-      
-      
+
+    <footer class="footer">
+        <p>Sécurité | Fiabilité | Performance</p>
+        <p>© 2025 Exam Platform. All rights reserved.</p>
+      </footer>
     
 </div>
 

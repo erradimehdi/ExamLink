@@ -2,13 +2,19 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #121212;
+    background-color: #fcf5eb;
     font-family: 'Inter', sans-serif;
-    color: #ffffff;
+    color: black;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     min-height: 100vh;
+    background-image: url('../css/image2.png'); /* chemin relatif selon ton fichier */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
   }
   
   body.page-transition {
@@ -26,7 +32,6 @@ body {
     left: 0;
     width: 100%;
     height: 40px; /* Augmente la hauteur pour les points */
-    background-color: #222;
     z-index: 1000;
     display: flex;
     justify-content: center;
@@ -42,65 +47,65 @@ body {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: #888;
+    background-color: #fcf5eb;
     margin: 0 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.8s ease;
 }
 
 /* Style pour la page active */
 .page-dot.active {
-    background-color: #55acee;
+    background-color: #25d366;
 }
 
-/*style pour les boutons */
-.button-group {
-    display: flex;
-    gap: 16px;            /* espace entre les deux boutons */
-    justify-content: center;
-    margin-top: 1.5rem;
+
+/* Style commun pour btn-back et btn-next */
+.btn-back, .btn-next {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #fcf5eb; /* couleur claire avant hover */
+  border: 2px solid #25d366;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(37, 211, 102, 0.4);
+  transition: background-color 0.3s ease, transform 0.25s ease, box-shadow 0.3s ease;
+  padding: 0;
+  user-select: none;
+}
+.btn {
+  cursor: pointer;
+}
+
+/* Couleur du SVG */
+.btn-back svg, .btn-next svg {
+  stroke: #25d366;
+  width: 20px;
+  height: 20px;
+  transition: stroke 0.3s ease;
+}
+
+/* Hover + active states */
+.btn-back:hover, .btn-next:hover {
+  background-color: #25d366;
+  box-shadow: 0 0 15px rgba(37, 211, 102, 0.8);
+}
+
+.btn-back:hover svg, .btn-next:hover svg {
+  stroke: #fcf5eb; /* contraste sur fond vert */
+}
+
+.btn-back:active, .btn-next:active {
+  transform: scale(0.95);
+  box-shadow: 0 0 6px rgba(37, 211, 102, 0.5);
+  .btn:active {
+    transform: scale(0.98);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   }
   
-  /* Style commun pour btn-back et btn-next */
-  .btn-back, .btn-next {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: transparent;
-    border: 2px solid #55acee;
-    cursor: pointer;
-    box-shadow: 0 0 8px rgba(85, 172, 238, 0.5);
-    transition: background-color 0.3s ease, transform 0.25s ease, box-shadow 0.3s ease;
-    padding: 0;
-    user-select: none;
-  }
-  
-  /* Couleur du SVG */
-  .btn-back svg, .btn-next svg {
-    stroke: #55acee;
-    width: 20px;
-    height: 20px;
-    transition: stroke 0.3s ease;
-  }
-  
-  /* Hover + active states */
-  .btn-back:hover, .btn-next:hover {
-    background-color: #55acee;
-    box-shadow: 0 0 15px rgba(85, 172, 238, 0.8);
-  }
-  
-  .btn-back:hover svg, .btn-next:hover svg {
-    stroke: #121212; /* sombre sur fond bleu */
-  }
-  
-  .btn-back:active, .btn-next:active {
-    transform: scale(0.95);
-    box-shadow: 0 0 6px rgba(85, 172, 238, 0.5);
-  }
-  
+}
 
 
   
@@ -112,14 +117,17 @@ body {
     flex-grow: 1;
   }
   
+  /* changement  */
   .index-login-container {
     text-align: center;
     padding: 2rem;
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: #fcf5eb;
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    width: 90%;
-    max-width: 400px;
+    border: 1px solid rgba(230, 230, 230, 0.1);
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 0.6s ease-in-out;
   }
   
   .logo {
@@ -136,11 +144,13 @@ body {
   
   .site-description {
     font-size: 1rem;
-    color: #bbbbbb;
+    color: #6a6a6a; /* plus lisible mais toujours doux */
     margin-bottom: 1rem;
   }
   
+  /*  === */
   hr {
+    background-color: #111b21;
     border: none;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     margin: 1rem 0;
@@ -161,23 +171,24 @@ body {
   }
   
   .btn-primary {
-    background-color: #55acee;
-    color: white;
+    background-color: #25d366;
+    color: #111b21;
     box-shadow: 0 0 10px rgba(85, 172, 238, 0.5);
   }
   
   .btn-primary:hover {
-    background-color: #448ccb;
+    background-color: #111b21;
+    color: white;
   }
   
   .btn-secondary {
-    background-color: #444;
-    color: #ddd;
+    background-color: white;
+    color: #111b21;
     box-shadow: 0 0 5px rgba(68, 68, 68, 0.5);
   }
   
   .btn-secondary:hover {
-    background-color: #333;
+    background-color: #111b21;
     color: #fff;
   }
   
@@ -189,12 +200,14 @@ body {
     background-color: #121212;
     color: #999;
   }
-  
+
+
+
   /* === Transition de page === */
-  .page-transition {
+  /* .page-transition {
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
-  }
+  } */
   
   /* === Signup Style === */
   .container {
@@ -204,18 +217,20 @@ body {
     padding: 20px;
   }
   
+  /*  === */
   .signup-container {
     text-align: center;
     padding: 2rem;
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: #fcf5eb;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     width: 100%;
     max-width: 600px;
     margin: 20px auto;
     transform: translateY(-20px);
-    opacity: 0;
-    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    opacity: 1;
+    cursor: pointer;
+    animation: fadeInUp 0.6s ease-in-out;
   }
   
   .signup-container.loaded {
@@ -234,6 +249,7 @@ body {
   
   /* === Titre du formulaire === */
   .form-title {
+    color: #111b21;
     font-size: 2rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
@@ -241,6 +257,8 @@ body {
   
   /* === Formulaire === */
   .signup-form {
+  
+    /* color: #111b21; */
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -252,31 +270,34 @@ body {
     margin-bottom: 1rem;
     text-align: left;
   }
-  
+  /*  === */
   .form-group label {
     font-size: 1rem;
     margin-bottom: 0.5rem;
-    color: #ddd;
+    color: #111b21;
+    
   }
   
+  /*  === */
   .form-control {
     padding: 0.75rem;
     font-size: 1rem;
     border-radius: 6px;
     border: 1px solid #444;
-    background-color: #222;
-    color: #fff;
+    background-color: white;
+    color: #111b21;
     transition: border-color 0.2s ease-in-out;
+    cursor: pointer;
   }
   
-  .form-control:focus {
-    border-color: #55acee;
+  /* .form-control:focus {
+    border-color: black;
     outline: none;
     box-shadow: 0 0 0 0.2rem rgba(85, 172, 238, 0.25);
   }
-  
+   */
   /* === Boutons (signup) === */
-  .btn {
+  /* .btn {
     padding: 1rem;
     font-size: 1.1rem;
     font-weight: 600;
@@ -294,9 +315,20 @@ body {
   .btn-block {
     display: block;
     width: 100%;
-  }
+  } */
   
   /* === Media Queries === */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   @media (max-width: 768px) {
     .signup-container {
       width: 100%;
@@ -349,11 +381,14 @@ body {
     align-items: center;
   }
   
+  /*change*/
   /* Boîte de connexion */
   .login-container {
     text-align: center;
     padding: 2rem;
-    background-color: rgba(255, 255, 255, 0.05);
+    
+    background-color: #fcf5eb;
+    
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     max-width: 500px;
@@ -367,17 +402,17 @@ body {
     opacity: 1;
   }
   
-  .logo {
+  /* .logo {
     width: 64px;
     height: auto;
     margin-bottom: 1rem;
-  }
+  } */
   
-  .form-title {
+  /* .form-title {
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 1rem;
-  }
+  } */
   
   /* Formulaire */
 
@@ -387,6 +422,7 @@ body {
     flex-direction: column;
     align-items: stretch;
     width: 100%;
+    color: #111b21;
   }
   
   .form-group {
@@ -409,7 +445,7 @@ body {
     margin-top: 1.5rem;
   }
   
-  .btn-back,
+  /* .btn-back,
   .btn-next {
     background: none;
     border: none;
@@ -423,5 +459,5 @@ body {
   .btn-next:hover {
     background-color: rgba(255, 255, 255, 0.1);
   }
-  
+   */
   

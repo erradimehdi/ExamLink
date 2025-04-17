@@ -96,11 +96,29 @@ function goBack() {
 }
 
 function goNext() {
-    const form = document.querySelector('.signup-form');
-    if (form && form.checkValidity()) {
-        window.location.href = 'confirmation.html';
-    } else if (form) {
+    const currentPage = window.location.pathname.split('/').pop();
+  
+    if (currentPage === 'signup.html') {
+      const form = document.querySelector('.signup-form');
+      if (form && form.checkValidity()) {
+        // plus tard tu pourras faire un envoi vers backend ici
+        window.location.href = 'login.html';
+      } else {
         form.reportValidity();
+      }
+  
+    } else if (currentPage === 'login.html') {
+      const form = document.querySelector('.login-form');
+      if (form && form.checkValidity()) {
+        // Redirection vers dashboard ou autre page (à adapter)
+        window.location.href = 'dashboard.html'; // ou examiner.html, etc.
+      } else {
+        form.reportValidity();
+      }
+  
+    } else {
+      // par défaut ou erreur
+      console.warn("Page non prise en charge pour goNext()");
     }
-}
-
+  }
+  
