@@ -95,6 +95,8 @@ function goBack() {
     window.history.back();
 }
 
+
+
 function goNext() {
     const currentPage = window.location.pathname.split('/').pop();
   
@@ -106,7 +108,7 @@ function goNext() {
       } else {
         form.reportValidity();
       }
-  
+
     } else if (currentPage === 'login.html') {
       const form = document.querySelector('.login-form');
       if (form && form.checkValidity()) {
@@ -120,5 +122,27 @@ function goNext() {
       // par défaut ou erreur
       console.warn("Page non prise en charge pour goNext()");
     }
+  }
+  
+  // ==== dashboard js ==== // 
+  function togglePasteSection() {
+    const section = document.getElementById('pasteSection');
+    section.style.display = section.style.display === 'none' ? 'block' : 'none';
+  }
+
+  function goToExam() {
+    const link = document.getElementById('examLink').value.trim();
+    if (link) {
+      // Validation future côté serveur ici si nécessaire
+      window.location.href = 'create.html';
+    }
+  }
+
+  //fonction pour le bouton de déconnexion
+  function logout() {
+    // Effacer le token ou session
+    localStorage.removeItem('token'); // si tu utilises JWT
+    // Rediriger vers la page d'accueil
+    window.location.href = 'index.html';
   }
   
