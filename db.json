@@ -1,0 +1,309 @@
+{
+  "users": [
+    {
+      "id": "8afe",
+      "type": "enseignant",
+      "email": "test123@gmail.com",
+      "password": "123412414",
+      "prenom": "asd",
+      "nom": "moha",
+      "dob": "2025-04-17",
+      "sexe": "homme",
+      "etablissement": "Faculté des Sciences de Tétouan (FS)",
+      "filiere": "SMA"
+    },
+    {
+      "id": "f68b",
+      "type": "étudiant",
+      "email": "test123@gmail.com",
+      "password": "asdadsadad",
+      "prenom": "mehdi",
+      "nom": "test2",
+      "dob": "2025-04-22",
+      "sexe": "homme",
+      "etablissement": "Faculté des Sciences de Tétouan (FS)",
+      "filiere": "SMI"
+    },
+    {
+      "id": "b58f",
+      "type": "étudiant",
+      "email": "asdasd@asda",
+      "password": "asafsaf",
+      "prenom": "asd12313",
+      "nom": "asd",
+      "dob": "2025-04-17",
+      "sexe": "femme",
+      "etablissement": "Faculté des Sciences de Tétouan (FS)",
+      "filiere": "GE"
+    },
+    {
+      "id": "70e6",
+      "type": "étudiant",
+      "email": "asdwdq@asda",
+      "password": "asdada",
+      "prenom": "asdadadqwdqd",
+      "nom": "qwdqdqdq",
+      "dob": "2025-04-08",
+      "sexe": "homme",
+      "etablissement": "Faculté des Sciences de Tétouan (FS)",
+      "filiere": "SMI"
+    },
+    {
+      "id": "6672",
+      "type": "étudiant",
+      "email": "youssef123@gmail.com",
+      "password": "mtptest",
+      "prenom": "mehdi",
+      "nom": "dasdasd",
+      "dob": "2025-04-11",
+      "sexe": "femme",
+      "etablissement": "Faculté des Sciences de Tétouan (FS)",
+      "filiere": "SVA"
+    },
+    {
+      "id": "1031",
+      "type": "enseignant",
+      "email": "prof@gmail.com",
+      "password": "prod123.apsjad",
+      "prenom": "said",
+      "nom": "si3isaw",
+      "dob": "2025-04-05",
+      "sexe": "homme",
+      "etablissement": "École Normale Supérieure de Tétouan (ENS)",
+      "filiere": "SVA"
+    },
+    {
+      "id": "c49d",
+      "type": "étudiant",
+      "email": "asdaddqdqwdqd@asdadad",
+      "password": "asdadadqwdq",
+      "prenom": "neeeeeeeeeeeee",
+      "nom": "eawwwwwwwwwww",
+      "dob": "2025-04-04",
+      "sexe": "homme",
+      "etablissement": "École Normale Supérieure de Tétouan (ENS)",
+      "filiere": "SMI"
+    },
+    {
+      "id": "9902",
+      "type": "enseignant",
+      "email": "testtese@gmail.com",
+      "password": "qwdqdwqdqwdqdad",
+      "prenom": "adadwadqdqd12312313131313",
+      "nom": "1231231313131313133",
+      "dob": "2025-04-11",
+      "sexe": "femme",
+      "etablissement": "École Normale Supérieure de Tétouan (ENS)",
+      "filiere": "SVA"
+    },
+    {
+      "id": "b805",
+      "type": "",
+      "email": "",
+      "password": "",
+      "prenom": "",
+      "nom": "",
+      "dob": "",
+      "sexe": "",
+      "etablissement": "",
+      "filiere": ""
+    },
+    {
+      "id": "0ece",
+      "type": "étudiant",
+      "email": "fintest@fin",
+      "password": "fin9191919",
+      "prenom": "stpstpmarch",
+      "nom": "stpstpmarch",
+      "dob": "2025-04-10",
+      "sexe": "homme",
+      "etablissement": "Faculté des Sciences de Tétouan (FS)",
+      "filiere": "SVA"
+    },
+    {
+      "id": "7f6d",
+      "type": "enseignant",
+      "email": "adress@asgpasgk",
+      "password": "mehdiermehdi",
+      "prenom": "51-239123",
+      "nom": "1e1eaqweqweqweqe",
+      "dob": "2025-04-04",
+      "sexe": "homme",
+      "etablissement": "Faculté des Sciences de Tétouan (FS)",
+      "filiere": "SVA"
+    },
+    {
+      "id": "8e93",
+      "type": "enseignant",
+      "email": "test112323@gmail.com",
+      "password": "test112323",
+      "prenom": "test112323",
+      "nom": "test112323",
+      "dob": "2025-04-02",
+      "sexe": "homme",
+      "etablissement": "Faculté des Sciences de Tétouan (FS)",
+      "filiere": "SV"
+    },
+    {
+      "id": "0996",
+      "type": "étudiant",
+      "email": "test1qwdqd23@gmail.com",
+      "password": "test1qwdqd23",
+      "prenom": "test1qwdqd23",
+      "nom": "test1qwdqd23",
+      "dob": "2025-04-02",
+      "sexe": "femme",
+      "etablissement": "École Normale Supérieure de Tétouan (ENS)",
+      "filiere": "SV"
+    },
+    {
+      "id": "443c",
+      "type": "étudiant",
+      "email": "pls@plsc",
+      "password": "mehdimehdi1231344",
+      "prenom": "aafsfaf",
+      "nom": "plspls",
+      "dob": "2025-04-11",
+      "sexe": "femme",
+      "etablissement": "Faculté des Sciences de Tétouan (FS)",
+      "filiere": "SMA"
+    },
+    {
+      "id": "a325",
+      "type": "enseignant",
+      "email": "hafid@himmie",
+      "password": "sadffqfqf12123",
+      "prenom": "apsijasdqd",
+      "nom": "apsijasdqd",
+      "dob": "2025-04-01",
+      "sexe": "homme",
+      "etablissement": "Faculté des Sciences de Tétouan (FS)",
+      "filiere": "SV"
+    },
+    {
+      "id": "e637",
+      "type": "étudiant",
+      "email": "inscrition@gmail.com",
+      "password": "inscrotiopo",
+      "prenom": "inscription",
+      "nom": "inscription",
+      "dob": "2025-04-11",
+      "sexe": "homme",
+      "etablissement": "Faculté des Sciences de Tétouan (FS)",
+      "filiere": "SMI"
+    },
+    {
+      "id": "d6ec",
+      "type": "enseignant",
+      "email": "tes12313t123@gmail.com",
+      "password": "tes12313t123",
+      "prenom": "tes12313t123",
+      "nom": "tes12313t123",
+      "dob": "2025-04-02",
+      "sexe": "homme",
+      "etablissement": "Faculté des Sciences de Tétouan (FS)",
+      "filiere": "SMI"
+    },
+    {
+      "id": "1a8a",
+      "type": "étudiant",
+      "email": "testst@gmail.com",
+      "password": "mehditeststteststteststtestst",
+      "prenom": "teststtestst",
+      "nom": "teststtestst",
+      "dob": "2025-04-02",
+      "sexe": "homme",
+      "etablissement": "École Normale Supérieure de Tétouan (ENS)",
+      "filiere": "SV"
+    },
+    {
+      "id": "2005",
+      "email": "prof123@gmail.com",
+      "password": "prof123prof123"
+    },
+    {
+      "id": "1278",
+      "email": "prof12qwdqd3@gmail.com",
+      "password": "prof123"
+    },
+    {
+      "id": "384b",
+      "email": "prof12qwdqasdadd3@gmail.com",
+      "password": "prof123prof123"
+    },
+    {
+      "id": "fb9d",
+      "email": "Mehdierradi@gmail.com",
+      "password": "testmtp9009069"
+    },
+    {
+      "id": "76c2",
+      "email": "etudiant@etu",
+      "password": "midimedi123"
+    },
+    {
+      "id": "cf65",
+      "email": "etudiantasdadads@etu",
+      "password": "assfafa"
+    },
+    {
+      "id": "74ff",
+      "type": "enseignant",
+      "email": "etutest@gmail.com",
+      "password": "mehdi1233,asd-i",
+      "prenom": "etudiant12=-3i0asd",
+      "nom": "etudiant12=-3i0asd",
+      "dob": "2025-04-03",
+      "sexe": "femme",
+      "etablissement": "École Normale Supérieure de Tétouan (ENS)",
+      "filiere": "SVA"
+    },
+    {
+      "id": "4923",
+      "type": "étudiant",
+      "email": "asdad@ASd",
+      "password": "asdad@ASd",
+      "prenom": "asdad@ASd",
+      "nom": "asdad@ASd",
+      "dob": "2025-04-29",
+      "sexe": "femme",
+      "etablissement": "Faculté des Sciences de Tétouan (FS)",
+      "filiere": "SMI"
+    },
+    {
+      "id": "5ac9",
+      "type": "enseignant",
+      "email": "saddADsadawdqd@gmail.com",
+      "password": "saddADsadawdqd",
+      "prenom": "asdsaddADsadawdqd",
+      "nom": "saddADsadawdqd",
+      "dob": "2025-04-15",
+      "sexe": "homme",
+      "etablissement": "Faculté des Sciences de Tétouan (FS)",
+      "filiere": "SVA"
+    },
+    {
+      "id": "ae50",
+      "email": "etu12314@gmail.com",
+      "password": "qwdasdasdadasd"
+    },
+    {
+      "id": "d0be",
+      "email": "plsplspls@gmail.com",
+      "password": "1231313123131414"
+    },
+    {
+      "id": "113f",
+      "type": "étudiant",
+      "email": "test@gmail.com",
+      "password": "hafid12314.?",
+      "nom": "mehdimehdiplst",
+      "prenom": "mehdimehdiplst",
+      "dob": "2025-04-03",
+      "sexe": "homme",
+      "etablissement": "Faculté des Sciences de Tétouan (FS)",
+      "filiere": "SMI"
+    }
+  ],
+  "exams": []
+}

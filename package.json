@@ -1,0 +1,26 @@
+{
+  "name": "examlink",
+  "version": "1.0.0",
+  "description": "**ExamLink** est une plateforme web intuitive permettant aux utilisateurs de créer et passer des examens en ligne de manière sécurisée et fluide.",
+  "main": "backend/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erradimehdi/ExamLink.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erradimehdi/ExamLink/issues"
+  },
+  "homepage": "https://github.com/erradimehdi/ExamLink#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "mysql2": "^3.14.0",
+    "nodemon": "^3.1.10"
+  }
+}
