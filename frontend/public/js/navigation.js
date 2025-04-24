@@ -1,7 +1,10 @@
 function gotosignUp() {
-    document.body.classList.add('page-transition');
-    window.location.href = 'signup.html';
-};
+    window.location.href = window.location.origin + "/frontend/views/signup.html";
+}
+
+function gotologIn() {
+    window.location.href = window.location.origin + "/frontend/views/login.html";
+}
 
 // function logIn() {
 //     document.body.classList.add('page-transition');
