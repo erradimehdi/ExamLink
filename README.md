@@ -83,3 +83,8 @@ exam_platform/
 - Mehdi Erradi
 
 ---
+✅ Ajout fonctionnalité d'inscription côté JSON et backend :
+- Création du formulaire signup.html avec champs obligatoires
+- Intégration de signup.js pour appel fetch() vers JSON Server ou backend
+- Mise en place du backend Node.js avec Express, MySQL et route /api/users
+- Vérification email existant et insertion dans la BDD
