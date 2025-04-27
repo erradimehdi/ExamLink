@@ -303,7 +303,210 @@
       "sexe": "homme",
       "etablissement": "Faculté des Sciences de Tétouan (FS)",
       "filiere": "SMI"
+    },
+    {
+      "id": "7bd1",
+      "type": "étudiant",
+      "email": "ahmedtest@gmail.com",
+      "password": "test12-381nasopdfmaqsda",
+      "nom": "fefaa",
+      "prenom": "ahmedf",
+      "dob": "2025-04-02",
+      "sexe": "homme",
+      "etablissement": "Faculté des Sciences de Tétouan (FS)",
+      "filiere": "SMI"
     }
   ],
-  "exams": []
+  "exams": [
+    {
+      "id": "9eb6",
+      "titre": "test exam",
+      "description": "examen de test",
+      "filiere": "SMI",
+      "code": "D0gYb2hf",
+      "createdBy": "7bd1",
+      "questions": [],
+      "createdAt": "2025-04-27T18:04:11.098Z"
+    },
+    {
+      "id": "2530",
+      "titre": "asdasda",
+      "description": "dasdasd",
+      "filiere": "SMI",
+      "code": "YWi4KNhF",
+      "createdBy": "7bd1",
+      "questions": [],
+      "createdAt": "2025-04-27T18:12:53.679Z"
+    },
+    {
+      "id": "ea6d",
+      "titre": "asdad",
+      "description": "dasdad",
+      "filiere": "SMI",
+      "code": "ph5pLRis",
+      "createdBy": "7bd1",
+      "questions": [],
+      "createdAt": "2025-04-27T18:13:16.940Z"
+    },
+    {
+      "id": "137e",
+      "titre": "asdasdsdfsdfsf",
+      "description": "asdafsdf",
+      "filiere": "SMA",
+      "code": "2WM1Z6WR",
+      "createdBy": "7bd1",
+      "questions": [],
+      "createdAt": "2025-04-27T18:13:21.756Z"
+    },
+    {
+      "id": "49e7",
+      "titre": "test exam",
+      "description": "examen de test",
+      "filiere": "SMI",
+      "code": "p1qUh5Dr",
+      "createdBy": "7bd1",
+      "questions": [],
+      "createdAt": "2025-04-27T18:25:56.808Z"
+    },
+    {
+      "id": "0a83",
+      "titre": "tetttt",
+      "description": "asdad",
+      "filiere": "SMP",
+      "code": "HqbpVwq3",
+      "createdBy": "7bd1",
+      "questions": [],
+      "createdAt": "2025-04-27T19:00:46.499Z"
+    },
+    {
+      "id": "d2f8",
+      "titre": "asagsags",
+      "description": "fasfafa",
+      "filiere": "SMP",
+      "code": "kX9wyI60",
+      "createdBy": "7bd1",
+      "questions": [],
+      "createdAt": "2025-04-27T19:01:00.439Z"
+    },
+    {
+      "id": "4a95",
+      "titre": "egwergaq",
+      "description": "sgasdad",
+      "filiere": "SMI",
+      "code": "Am62Cw6l",
+      "createdBy": "7bd1",
+      "questions": [],
+      "createdAt": "2025-04-27T19:04:52.097Z"
+    },
+    {
+      "id": "46cb",
+      "titre": "hwrhwhe",
+      "description": "e qw qeqwe",
+      "filiere": "SMA",
+      "code": "sWBPgG8w",
+      "createdBy": "7bd1",
+      "questions": [],
+      "createdAt": "2025-04-27T19:07:01.541Z"
+    },
+    {
+      "id": "711b",
+      "titre": "testtest",
+      "description": "testetst exam",
+      "filiere": "SMI",
+      "code": "NRcJutad",
+      "createdBy": "5ac9",
+      "questions": [],
+      "createdAt": "2025-04-27T19:28:43.241Z"
+    },
+    {
+      "id": "1221",
+      "titre": "testtest",
+      "description": "testetst exam",
+      "filiere": "SMI",
+      "code": "YqjvSNGm",
+      "createdBy": "5ac9",
+      "questions": [],
+      "createdAt": "2025-04-27T20:09:25.727Z"
+    },
+    {
+      "id": "ba2d",
+      "titre": "examenTest",
+      "description": "examen de test",
+      "filiere": "SMI",
+      "code": "v7HS6vCn",
+      "createdBy": "4923",
+      "questions": [],
+      "createdAt": "2025-04-27T20:10:50.547Z"
+    },
+    {
+      "id": "04b4",
+      "titre": "exam test",
+      "description": "exam pour testes",
+      "filiere": "SMA",
+      "code": "UcCqQMvB",
+      "createdBy": "4923",
+      "questions": [
+        {
+          "type": "directe",
+          "enonce": "1+1",
+          "media": null,
+          "note": 1,
+          "duration": 10,
+          "reponse": "2",
+          "tolerance": 10
+        },
+        {
+          "type": "qcm",
+          "enonce": "c quoi definition",
+          "media": null,
+          "note": 2,
+          "duration": 10,
+          "options": [
+            "test",
+            "def",
+            "fed",
+            "fqwe"
+          ],
+          "correct": 2
+        },
+        {
+          "type": "directe",
+          "enonce": "1+1",
+          "media": "download.jpeg",
+          "note": 5,
+          "duration": 5,
+          "reponse": "2",
+          "tolerance": 10
+        }
+      ],
+      "createdAt": "2025-04-27T20:14:59.620Z"
+    },
+    {
+      "id": "9a86",
+      "titre": "exam test2",
+      "description": "asgag",
+      "filiere": "SMP",
+      "code": "Vvktn54m",
+      "createdBy": "4923",
+      "questions": [
+        {
+          "type": "qcm",
+          "enonce": "1+0",
+          "media": "https://as1.ftcdn.net/jpg/11/27/53/32/1000_F_1127533237_53FacJGepUtbIO3Mxf4441BlRj7SSdVq.jpg",
+          "note": 1,
+          "duration": 1,
+          "options": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "correct": [
+            1
+          ]
+        }
+      ],
+      "createdAt": "2025-04-27T20:31:38.526Z"
+    }
+  ]
 }

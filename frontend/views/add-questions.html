@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ajouter des questions</title>
+  <link rel="stylesheet" href="../public/css/style.css">
+  <link rel="icon" href="../public/css/image.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="page-transition">
+
+<div class="container">
+  <main class="signup-container">
+    <img src="../public/css/image.png" alt="Logo de ExamLink" class="logo">
+    <h2 class="form-title">Ajouter des questions</h2>
+
+    <!-- Choix du type de question -->
+    <div class="form-group">
+      <label for="typeQuestion">Type de question :</label>
+      <select id="typeQuestion" class="form-control">
+        <option value="qcm">QCM</option>
+        <option value="directe">Question Directe</option>
+      </select>
+    </div>
+
+    <!-- Formulaire dynamique ici -->
+    <div id="questionForm"></div>
+
+    <!-- Boutons -->
+    <div style="margin-top: 1rem;">
+      <button id="addQuestionBtn" class="btn btn-primary">Ajouter la question</button>
+      <button id="finishExamBtn" class="btn btn-secondary">Terminer l'examen</button>
+    </div>
+  </main>
+</div>
+
+<footer class="footer">
+  <p>Sécurité | Fiabilité | Performance</p>
+  <p>© 2025 Exam Platform. All rights reserved.</p>
+</footer>
+
+<script src="../public/js/config.js"></script>
+<script src="../public/js/main.js"></script>
+<script src="../public/js/exams.js"></script>
+<script src="../public/js/add-questions.js"></script>
+</body>
+</html>

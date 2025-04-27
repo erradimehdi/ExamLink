@@ -9,67 +9,60 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body class="page-transition">
-    <div class="top-bar">
-        <div class="page-indicator">
-            <span class="page-dot" data-page="index"></span>
-            <span class="page-dot" data-page="signup"></span>
-            <span class="page-dot" data-page="login"></span>
-            <span class="page-dot" data-page="dashboard"></span>
-            <span class="page-dot active" data-page="create"></span> 
-        </div>
+  
+  <!-- Barre d'étapes -->
+  <div class="top-bar">
+    <div class="page-indicator">
+      <span class="page-dot" data-page="index"></span>
+      <span class="page-dot" data-page="signup"></span>
+      <span class="page-dot" data-page="login"></span>
+      <span class="page-dot" data-page="dashboard"></span>
+      <span class="page-dot active" data-page="create"></span> 
     </div>
+  </div>
+
   <div class="container">
     <main class="signup-container">
       <img src="../public/css/image.png" alt="Logo de ExamLink" class="logo">
       <h2 class="form-title">Créer un nouvel examen</h2>
 
-      <!-- Étape 1 : Formulaire examen -->
+      <!-- Formulaire création examen -->
       <form id="examForm">
         <div class="form-group">
           <label for="titre">Titre :</label>
           <input type="text" id="titre" name="titre" class="form-control" required>
         </div>
+
         <div class="form-group">
           <label for="description">Description :</label>
           <textarea id="description" name="description" class="form-control" required></textarea>
         </div>
+
         <div class="form-group">
           <label for="filiere">Public ciblé :</label>
           <select id="filiere" name="filiere" class="form-control" required>
             <option value="">-- Sélectionnez --</option>
-            <option value="SMI">Sciences Mathématiques et Informatique (SMI)</option>
-            <option value="SMA">Sciences Mathématiques et Applications (SMA)</option>
-            <option value="SMP">Sciences de la Matière Physique (SMP)</option>
-            <option value="SMC">Sciences de la Matière Chimie (SMC)</option>
-            <option value="SV">Sciences de la Vie (SV)</option>
-            <option value="SVA">Sciences de la Vie et de la Terre (SVA)</option>
-            <option value="GE">Géologie (GE)</option>
+            <option value="SMI">SMI</option>
+            <option value="SMA">SMA</option>
+            <option value="SMP">SMP</option>
+            <option value="SMC">SMC</option>
+            <option value="SV">SV</option>
+            <option value="SVA">SVA</option>
+            <option value="GE">GE</option>
             <option value="Autre">Autre</option>
           </select>
         </div>
+
         <button type="submit" class="btn btn-primary">Créer l'examen</button>
       </form>
 
-      <!-- Étape 2 : Ajout de questions (initialement caché) -->
-      <div id="questionSection" style="display:none;">
-        <h3 class="form-title">Ajouter une question</h3>
-        <div class="form-group">
-          <label for="typeQuestion">Type de question :</label>
-          <select id="typeQuestion" class="form-control">
-            <option value="qcm">QCM</option>
-            <option value="directe">Question directe</option>
-          </select>
-        </div>
-
-        <div id="questionForm"></div>
-        <button id="addQuestionBtn" class="btn btn-primary">Ajouter la question</button>
-        <button id="finishExamBtn" class="btn btn-secondary">Terminer l'examen</button>
-      </div>
-
-      <!-- Lien généré -->
+      <!-- Section de résultat (lien généré) -->
       <div id="generatedLink" style="display:none; margin-top: 2rem;"></div>
-      <button class="btn btn-secondary" onclick="window.location.href='dashboard.html'">← Retour au tableau de bord</button>
 
+      <!-- Retour -->
+      <button class="btn btn-secondary" onclick="window.location.href='dashboard.html'">
+        ← Retour au tableau de bord
+      </button>
     </main>
   </div>
 
@@ -77,7 +70,9 @@
     <p>Sécurité | Fiabilité | Performance</p>
     <p>© 2025 Exam Platform. All rights reserved.</p>
   </footer>
-  <script src="../public/js/exams.js"></script>
+
+  <script src="../public/js/config.js"></script>
   <script src="../public/js/main.js"></script>
+  <script src="../public/js/exams.js"></script> 
 </body>
 </html>

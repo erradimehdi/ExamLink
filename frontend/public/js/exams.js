@@ -1,84 +1,67 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const questions = [];
-  
-    const examForm = document.getElementById("examForm");
-    const questionSection = document.getElementById("questionSection");
-    const questionForm = document.getElementById("questionForm");
-    const typeSelect = document.getElementById("typeQuestion");
-    const addQuestionBtn = document.getElementById("addQuestionBtn");
-    const finishExamBtn = document.getElementById("finishExamBtn");
-    const generatedLink = document.getElementById("generatedLink");
-  
-    let questionIndex = 1;
-  
-    examForm.addEventListener("submit", function (e) {
-      e.preventDefault();
-      examForm.style.display = "none";
-      questionSection.style.display = "block";
-      renderQuestionForm();
+// 1. Fonction pour générer un code unique
+function generateRandomCode(length) {
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let result = "";
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+// 2. Ecouter le submit du formulaire, seulement si le formulaire existe
+document.addEventListener('DOMContentLoaded', function() {
+  const examForm = document.getElementById("examForm");
+  if (examForm) {
+    examForm.addEventListener("submit", createExam);
+  }
+});
+
+// 3. Créer l'examen
+async function createExam(event) {
+  event.preventDefault(); // Empêcher le refresh de la page
+
+  const titre = document.getElementById("titre").value;
+  const description = document.getElementById("description").value;
+  const filiere = document.getElementById("filiere").value;
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  if (!user) {
+    alert("Utilisateur non connecté.");
+    return;
+  }
+
+  const code = generateRandomCode(8);
+
+  const newExam = {
+    titre,
+    description,
+    filiere,
+    code,
+    createdBy: user.id || user.email,
+    questions: [],
+    createdAt: new Date().toISOString()
+  };
+
+  try {
+    const res = await fetch(`${API_BASE_URL}/exams`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newExam)
     });
-  
-    typeSelect.addEventListener("change", renderQuestionForm);
-  
-    function renderQuestionForm() {
-      const type = typeSelect.value;
-      questionForm.innerHTML = `
-        <div class="form-group">
-          <label>Énoncé de la question ${questionIndex} :</label>
-          <textarea class="form-control" id="questionText" required></textarea>
-        </div>
-      `;
-      if (type === "qcm") {
-        questionForm.innerHTML += `
-          <div class="form-group">
-            <label>Options (séparer par | et mettre * pour la bonne réponse):</label>
-            <input type="text" class="form-control" id="qcmOptions" placeholder="ex: *Paris|Lyon|Marseille">
-          </div>
-        `;
-      } else if (type === "directe") {
-        questionForm.innerHTML += `
-          <div class="form-group">
-            <label>Réponse attendue :</label>
-            <input type="text" class="form-control" id="answerText">
-          </div>
-          <div class="form-group">
-            <label>Taux de tolérance (%) :</label>
-            <input type="number" class="form-control" id="tolerance" value="0">
-          </div>
-        `;
-      }
+
+    if (res.ok) {
+      const examData = await res.json();
+
+      // Stocker dans localStorage pour utiliser après dans la page des questions
+      localStorage.setItem("currentExam", JSON.stringify(examData));
+
+      // ✅ Rediriger vers la page d'ajout de questions
+      window.location.href = "add-questions.html";
+    } else {
+      alert("Erreur lors de la création de l'examen.");
     }
-  
-    addQuestionBtn.addEventListener("click", () => {
-      const type = typeSelect.value;
-      const text = document.getElementById("questionText").value;
-      const question = { type, text };
-  
-      if (type === "qcm") {
-        question.options = document.getElementById("qcmOptions").value;
-      } else if (type === "directe") {
-        question.answer = document.getElementById("answerText").value;
-        question.tolerance = document.getElementById("tolerance").value;
-      }
-  
-      questions.push(question);
-      questionIndex++;
-      renderQuestionForm();
-    });
-  
-    finishExamBtn.addEventListener("click", () => {
-      const examId = Math.random().toString(36).substring(2, 8);
-      const link = `https://examlink.com/exam/${examId}`;
-  
-      generatedLink.style.display = "block";
-      generatedLink.innerHTML = `
-        <h4>Votre examen a été créé !</h4>
-        <p>Nombre de questions : ${questions.length}</p>
-        <p><strong>Lien d'accès :</strong> <a href="${link}" target="_blank">${link}</a></p>
-      `;
-  
-      questionSection.style.display = "none";
-    });
-  });
-  
-  
+  } catch (error) {
+    console.error("Erreur réseau :", error);
+    alert("Erreur réseau.");
+  }
+}
