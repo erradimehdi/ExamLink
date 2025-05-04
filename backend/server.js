@@ -1,22 +1,29 @@
-//import des modules
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 
-//import des routes
+// Import des routes
 const userRoutes = require("./routes/users");
+const examRoutes = require("./routes/exams");
+const questionRoutes = require("./routes/questions"); // ✅ Ajouté
 
-//initialiser l'application express
+// Initialiser express
 const app = express();
 
-//middleware globaux
-app.use(cors()); //autorise les appels frontend vers backend
-app.use(express.json()); //permet de lire les donnees en JSON envoyées par le frontend
+// Middleware globaux
+app.use(cors());
+app.use(express.json());
 
-//routes
-app.use("/api/users", userRoutes); //toutes les requetes vers /api/users seront gérées par userRoutes
+// Servir les fichiers médias (uploads)
+app.use("/uploads", express.static(path.join(__dirname, "uploads"))); // ✅ Important
 
-//lancer le serveur sur le port 3001
+// Routes API
+app.use("/api/users", userRoutes);
+app.use("/api/exams", examRoutes);
+app.use("/api/questions", questionRoutes); // ✅ Ajouté
+
+// Lancer serveur
 const PORT = 3001;
 app.listen(PORT, () => {
-    console.log(`Serveur backend démarré sur http://localhost:${PORT}`);
+  console.log(`✅ Serveur backend démarré sur http://localhost:${PORT}`);
 });
