@@ -41,5 +41,35 @@ router.post("/", (req, res) => {
   });
 });
 
+// GET /api/exams/by-user/:userId
+router.get("/by-user/:userId", (req, res) => {
+    const userId = req.params.userId;
+  
+    const sql = "SELECT id, title, exam_code FROM exams WHERE created_by = ?";
+    db.query(sql, [userId], (err, results) => {
+        if (err) {
+            console.error("Erreur lors de la récupération des examens :", err);
+            return res.status(500).json({ error: "Erreur serveur." });
+        }
+  
+        res.status(200).json(results);
+    });
+});
+
+router.delete("/:examId", (req, res) => {
+  const examId = req.params.examId;
+
+  const sql = "DELETE FROM exams WHERE id = ?";
+  db.query(sql, [examId], (err, result) => {
+    if (err) {
+      console.error("Erreur suppression examen:", err);
+      return res.status(500).json({ error: "Erreur serveur." });
+    }
+
+    res.status(200).json({ message: "Examen supprimé avec succès." });
+  });
+});
+
+  
+
 module.exports = router;
-    

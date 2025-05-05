@@ -5,7 +5,8 @@ const path = require("path");
 // Import des routes
 const userRoutes = require("./routes/users");
 const examRoutes = require("./routes/exams");
-const questionRoutes = require("./routes/questions"); // ✅ Ajouté
+const questionRoutes = require("./routes/questions"); 
+const passExamRoutes = require("./routes/pass-exam"); 
 
 // Initialiser express
 const app = express();
@@ -21,6 +22,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads"))); // ✅ Imp
 app.use("/api/users", userRoutes);
 app.use("/api/exams", examRoutes);
 app.use("/api/questions", questionRoutes); // ✅ Ajouté
+app.use("/api/pass", passExamRoutes); 
 
 // Lancer serveur
 const PORT = 3001;
