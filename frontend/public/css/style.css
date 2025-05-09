@@ -493,3 +493,135 @@ body {
     font-size: 0.9rem;
   }
 }
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="file"],
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  background-color: #fff;
+  transition: border 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: #2a85ff;
+  outline: none;
+}
+
+
+
+.remove-option-btn:hover {
+  background-color: #c82333;
+}
+
+/* ✅ Conteneur des questions */
+.question-card {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  max-width: 700px;
+  margin: 40px auto;
+}
+
+/* ✅ Titre et texte */
+.question-card h3 {
+  font-size: 22px;
+  color: #1e2a38;
+  margin-bottom: 10px;
+}
+
+.question-card p {
+  font-size: 17px;
+  margin-bottom: 20px;
+}
+
+/* ✅ Réponses QCM */
+.qcm-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.option-label {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.option-label:hover {
+  background-color: #eef6ff;
+}
+
+.option-label input {
+  margin-right: 10px;
+  transform: scale(1.2);
+}
+
+/* ✅ Réponse directe */
+.input-text {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+/* ✅ Bouton personnalisé uniquement pour le quiz */
+.quiz-btn {
+  background-color: #25d366;
+  color: #111b21;
+  box-shadow: 0 0 10px rgba(85, 172, 238, 0.5);
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: block;
+  margin: 20px auto 0 auto; /* 👈 Ajout de 20px entre timer et bouton */
+  width: 100%;
+  max-width: 250px;
+}
+
+.quiz-btn:hover {
+  background-color: #111b21;
+  color: white;
+}
+
+/* ✅ Timer */
+#timer {
+  margin-top: 10px;
+  font-weight: 500;
+  font-size: 15px;
+  color: #333;
+  text-align: center;
+}

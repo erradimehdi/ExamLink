@@ -38,6 +38,18 @@
       </div>
       <button class="btn btn-secondary-2" onclick="logout()">Se déconnecter</button>
 
+      <!-- ✅ Notification d'examen créé
+      <div id="newExamBanner" style="display:none; background-color: #e7f9e9; padding: 10px; border: 1px solid #6fcf97; margin: 20px 0; border-radius: 8px;">
+        <p style="margin: 0 0 5px;"><strong>🎉 Nouvel examen créé :</strong> <span id="newExamTitle"></span></p>
+        <p style="margin: 0;">
+          🔗 <input type="text" id="newExamLink" readonly style="width: 70%; padding: 5px;">
+          <button onclick="copyNewExamLink()">Copier</button>
+          <button onclick="editNewExam()">Modifier</button>
+          <button onclick="deleteExam()">Supprimer</button>
+
+        </p>
+      </div> -->
+
       <!-- Examens créés et passés (placeholders) -->
       <hr>
       <h3 class="form-title">Mes examens créés</h3>
@@ -49,11 +61,8 @@
         <h1>📘 Examens passés</h1>
         <ul id="examensList"></ul>
       </section>
-      
     </main>
-
   </div>
-
 
   <footer class="footer">
     <p>Sécurité | Fiabilité | Performance</p>
@@ -63,6 +72,6 @@
   <script src="../public/js/main.js"></script>
   <script src="../public/js/exams.js"></script>
   <script src="../public/js/navigation.js"></script>
-
+  <script src="../public/js/dashboard.js"></script>
 </body>
 </html>

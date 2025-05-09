@@ -24,6 +24,12 @@
       </select>
     </div>
 
+  <!-- Formulaire dynamique ici -->
+    <h3 id="formTitle">Ajouter une question</h3>
+    <button id="cancelEditBtn" class="btn btn-warning" style="display:none; margin-bottom: 1rem;">
+      Annuler la modification
+    </button>
+
     <!-- Formulaire dynamique ici -->
     <div id="questionForm"></div>
 
@@ -32,6 +38,13 @@
       <button id="addQuestionBtn" class="btn btn-primary">Ajouter la question</button>
       <button id="finishExamBtn" class="btn btn-secondary">Terminer l'examen</button>
     </div>
+
+    <!-- ✅ Liste des questions existantes -->
+    <div style="margin-top: 2rem;">
+      <h3>📄 Questions ajoutées</h3>
+      <ul id="questionList"></ul>
+    </div>
+
   </main>
 </div>
 
@@ -40,9 +53,9 @@
   <p>© 2025 Exam Platform. All rights reserved.</p>
 </footer>
 
-<script src="../public/js/config.js"></script>
-<script src="../public/js/main.js"></script>
-<script src="../public/js/exams.js"></script>
-<script src="../public/js/add-questions.js"></script>
+  <script src="../public/js/config.js"></script>
+  <script src="../public/js/main.js"></script>
+  <script src="../public/js/exams.js"></script>
+  <script src="../public/js/add-questions.js"></script>
 </body>
 </html>

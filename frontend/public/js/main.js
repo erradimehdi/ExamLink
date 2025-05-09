@@ -68,5 +68,39 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+// // ✅ Affichage du lien de l'examen tout juste créé
+// document.addEventListener("DOMContentLoaded", () => {
+//     const banner = document.getElementById("newExamBanner");
+//     const exam = JSON.parse(localStorage.getItem("newlyCreatedExam"));
 
+//     if (exam && banner) {
+//         banner.style.display = "block";
+//         document.getElementById("newExamTitle").textContent = exam.examId + " — " + (exam.examCode || "");
+//         const fullLink = `${window.location.origin}/views/pass-exam.html?code=${exam.examCode}`;
+//         document.getElementById("newExamLink").value = fullLink;
+//         localStorage.removeItem("newlyCreatedExam");
+//     }
+// });
+
+// function copyNewExamLink() {
+//     const input = document.getElementById("newExamLink");
+//     input.select();
+//     document.execCommand("copy");
+//     alert("Lien copié !");
+// // }
+
+// function editNewExam() {
+//     const exam = JSON.parse(localStorage.getItem("currentExam"));
+//     if (exam) {
+//         window.location.href = `add-questions.html?examId=${exam.examId}&code=${exam.examCode}`;
+//     }
+// }
+function togglePasteSection() {
+    const section = document.getElementById("pasteSection");
+    if (section.style.display === "none") {
+      section.style.display = "block";
+    } else {
+      section.style.display = "none";
+    }
+}
   

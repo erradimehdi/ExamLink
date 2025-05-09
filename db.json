@@ -315,6 +315,18 @@
       "sexe": "homme",
       "etablissement": "Faculté des Sciences de Tétouan (FS)",
       "filiere": "SMI"
+    },
+    {
+      "id": "9458",
+      "type": "étudiant",
+      "email": "test51234@gmail.com",
+      "password": "qdionasdniad qwd",
+      "nom": "mehdi",
+      "prenom": "erradi",
+      "dob": "2025-04-03",
+      "sexe": "homme",
+      "etablissement": "Faculté des Sciences de Tétouan (FS)",
+      "filiere": "SMI"
     }
   ],
   "exams": [
@@ -507,6 +519,55 @@
         }
       ],
       "createdAt": "2025-04-27T20:31:38.526Z"
+    },
+    {
+      "id": "b3ac",
+      "titre": "examtest99",
+      "description": "examen ",
+      "filiere": "SMI",
+      "code": "kFzNFl9I",
+      "createdBy": "9458",
+      "questions": [
+        {
+          "type": "directe",
+          "enonce": "1+1",
+          "media": null,
+          "note": 1,
+          "duration": 5,
+          "reponse": "2",
+          "tolerance": 0
+        },
+        {
+          "type": "directe",
+          "enonce": "231231",
+          "media": null,
+          "note": 112,
+          "duration": 1123,
+          "reponse": "312313",
+          "tolerance": 0
+        }
+      ],
+      "createdAt": "2025-04-27T21:48:23.797Z"
+    },
+    {
+      "id": "5ee6",
+      "titre": "examen de test",
+      "description": "examen test",
+      "filiere": "SMI",
+      "code": "NmP1AHT3",
+      "createdBy": "b58f",
+      "questions": [
+        {
+          "type": "directe",
+          "enonce": "testeast",
+          "media": null,
+          "note": 7,
+          "duration": 10,
+          "reponse": "teqdeqsdfqf",
+          "tolerance": 10
+        }
+      ],
+      "createdAt": "2025-05-04T19:31:44.647Z"
     }
   ]
 }

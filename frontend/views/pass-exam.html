@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Passage de l'examen - ExamLink</title>
+  <link rel="stylesheet" href="../public/css/style.css">
+  <link rel="icon" href="../public/css/image.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="page-transition">
+  <!-- Barre de progression -->
+  <div class="top-bar">
+    <div class="page-indicator">
+      <span class="page-dot" data-page="index"></span>
+      <span class="page-dot" data-page="signup"></span>
+      <span class="page-dot" data-page="login"></span>
+      <span class="page-dot" data-page="pass-exam"></span>
+    </div>
+  </div>
+
+  <!-- Contenu principal -->
+  <div class="container">
+    <main class="signup-container">
+      <img src="../public/css/image.png" alt="Logo de ExamLink" class="logo">
+      <h2 class="form-title">📘 Passage de l'examen</h2>
+
+      <!-- Zone dynamique d'affichage -->
+      <div id="examArea" class="exam-box">Chargement de l'examen...</div>
+      <div id="questionContainer" style="margin-top: 20px;"></div>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <p>Sécurité | Fiabilité | Performance</p>
+    <p>© 2025 Exam Platform. All rights reserved.</p>
+  </footer>
+
+  <script src="../public/js/pass-exam.js"></script>
+  <script src="../public/js/config.js"></script>
+  <script src="../public/js/main.js"></script>
+  <script src="../public/js/exams.js"></script>
+</body>
+</html>

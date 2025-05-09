@@ -1,154 +1,255 @@
-document.addEventListener('DOMContentLoaded', function() {
-  // 1. Récupérer l'examen en cours
-  const exam = JSON.parse(localStorage.getItem("currentExam"));
-  if (!exam) {
-    alert("Aucun examen trouvé. Retour au tableau de bord.");
-    window.location.href = "dashboard.html";
+// JS complet pour add-questions.js avec ajout, suppression, affichage et modification des questions
+
+let editingQuestionId = null;
+
+document.addEventListener("DOMContentLoaded", () => {
+  const typeSelect = document.getElementById("typeQuestion");
+  const questionForm = document.getElementById("questionForm");
+  const addQuestionBtn = document.getElementById("addQuestionBtn");
+  const finishExamBtn = document.getElementById("finishExamBtn");
+  const questionList = document.getElementById("questionList");
+  const formTitle = document.getElementById("formTitle"); // ajouté pour afficher l'état du formulaire
+  const cancelEditBtn = document.getElementById("cancelEditBtn"); // bouton pour annuler la modification
+
+  const examParams = new URLSearchParams(window.location.search);
+  const examId = examParams.get("examId");
+  const examCode = examParams.get("code");
+
+  if (!examId || !examCode) {
+    alert("Paramètres d'examen manquants !");
     return;
   }
 
-  const typeQuestion = document.getElementById("typeQuestion");
-  const addQuestionBtn = document.getElementById("addQuestionBtn");
-  const finishExamBtn = document.getElementById("finishExamBtn");
+  function renderForm(type, data = {}) {
+    formTitle.textContent = editingQuestionId ? "Entrain de modifier..." : "Ajouter une question";
+    cancelEditBtn.style.display = editingQuestionId ? "inline-block" : "none";
 
-  if (typeQuestion) {
-    typeQuestion.addEventListener("change", renderQuestionForm);
+    if (type === "qcm") {
+      questionForm.innerHTML = `
+        <div class="form-group">
+          <label>Énoncé :</label>
+          <textarea id="questionText" required>${data.text || ""}</textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Média (facultatif) :</label>
+          <input type="file" id="media" />
+        </div>
+
+        <div id="qcmOptions"></div>
+        <button type="button" id="addOptionBtn">+ Ajouter une option</button>
+
+        <div class="form-group">
+          <label>Note :</label>
+          <input type="number" id="note" required value="${data.note || ""}" />
+        </div>
+
+        <div class="form-group">
+          <label>Durée (en secondes) :</label>
+          <input type="number" id="duration" required value="${data.duration || ""}" />
+        </div>
+      `;
+
+      document.getElementById("addOptionBtn").addEventListener("click", addQCMOption);
+
+      if (data.options) {
+        data.options.forEach((opt, idx) => addQCMOption(opt, data.correct[idx]));
+      } else {
+        addQCMOption();
+      }
+    } else {
+      questionForm.innerHTML = `
+        <div class="form-group">
+          <label>Énoncé :</label>
+          <textarea id="questionText" required>${data.text || ""}</textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Média (facultatif) :</label>
+          <input type="file" id="media" />
+        </div>
+
+        <div class="form-group">
+          <label>Réponse attendue :</label>
+          <input type="text" id="expectedAnswer" required value="${data.expected_answer || ""}" />
+        </div>
+
+        <div class="form-group">
+          <label>Taux de tolérance (%) :</label>
+          <input type="number" id="tolerance" min="0" max="100" value="${data.tolerance || 0}" />
+        </div>
+
+        <div class="form-group">
+          <label>Note :</label>
+          <input type="number" id="note" required value="${data.note || ""}" />
+        </div>
+
+        <div class="form-group">
+          <label>Durée (en secondes) :</label>
+          <input type="number" id="duration" required value="${data.duration || ""}" />
+        </div>
+      `;
+    }
   }
-  if (addQuestionBtn) {
-    addQuestionBtn.addEventListener("click", addQuestion);
-  }
-  if (finishExamBtn) {
-    finishExamBtn.addEventListener("click", finishExam);
-  }
 
-  renderQuestionForm();
+  window.addQCMOption = function (value = "", isCorrect = false) {
+    const qcmOptions = document.getElementById("qcmOptions");
+    const index = qcmOptions.children.length;
 
-  function renderQuestionForm() {
-    const type = typeQuestion.value;
-    const container = document.getElementById("questionForm");
-    container.innerHTML = "";
+    const optionDiv = document.createElement("div");
+    optionDiv.classList.add("form-group", "qcm-option-group");
 
-    const commonFields = `
-      <div class="form-group">
-        <label for="questionText">Énoncé :</label>
-        <input type="text" id="questionText" class="form-control" required>
-      </div>
-      <div class="form-group">
-        <label>Média :</label>
-        <input type="file" id="mediaFile" class="form-control">
-        <small>Ou entrer une URL :</small>
-        <input type="text" id="mediaURL" class="form-control" placeholder="https://...">
-      </div>
-      <div class="form-group">
-        <label for="note">Note :</label>
-        <input type="number" id="note" class="form-control" min="1" required>
-      </div>
-      <div class="form-group">
-        <label for="duration">Durée (en secondes) :</label>
-        <input type="number" id="duration" class="form-control" min="5" required>
-      </div>
+    optionDiv.innerHTML = `
+      <input type="text" placeholder="Option ${index + 1}" class="qcm-option" value="${value}" />
+      <label>
+        <input type="checkbox" class="qcm-correct" ${isCorrect ? "checked" : ""} /> Bonne réponse
+      </label>
+      <button type="button" class="remove-option-btn" style="margin-left:10px;">❌</button>
     `;
 
-    if (type === "qcm") {
-      container.innerHTML = `
-        ${commonFields}
-        <div class="form-group">
-          <label>Options :</label>
-          <div><input type="checkbox" id="correct1"> <input type="text" id="option1" class="form-control" placeholder="Option 1" required></div>
-          <div><input type="checkbox" id="correct2"> <input type="text" id="option2" class="form-control" placeholder="Option 2" required></div>
-          <div><input type="checkbox" id="correct3"> <input type="text" id="option3" class="form-control" placeholder="Option 3" required></div>
-          <div><input type="checkbox" id="correct4"> <input type="text" id="option4" class="form-control" placeholder="Option 4" required></div>
-        </div>
-      `;
-    } else if (type === "directe") {
-      container.innerHTML = `
-        ${commonFields}
-        <div class="form-group">
-          <label for="answer">Réponse attendue :</label>
-          <input type="text" id="answer" class="form-control" required>
-        </div>
-        <div class="form-group">
-          <label for="tolerance">Taux de tolérance (%) :</label>
-          <input type="number" id="tolerance" class="form-control" min="0" max="100" value="0">
-        </div>
-      `;
+    optionDiv.querySelector(".remove-option-btn").addEventListener("click", () => {
+      optionDiv.remove();
+      updateQCMOptionLabels();
+    });
+
+    qcmOptions.appendChild(optionDiv);
+  };
+
+  function updateQCMOptionLabels() {
+    const optionInputs = document.querySelectorAll(".qcm-option");
+    optionInputs.forEach((input, index) => {
+      input.placeholder = `Option ${index + 1}`;
+    });
+  }
+
+  async function loadQuestions() {
+    try {
+      const res = await fetch(`http://localhost:3001/api/questions/by-exam/${examId}`);
+      const data = await res.json();
+      questionList.innerHTML = "";
+
+      if (data.length === 0) {
+        questionList.innerHTML = "<li>Aucune question ajoutée.</li>";
+        return;
+      }
+
+      data.forEach(q => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <strong>${q.text}</strong> (${q.type})
+          <button class="btn btn-small" onclick="deleteQuestion(${q.id})">🗑 Supprimer</button>
+          <button class="btn btn-small" onclick="editQuestion(${q.id})">✏ Modifier</button>
+        `;
+        questionList.appendChild(li);
+      });
+    } catch (err) {
+      console.error("Erreur de chargement des questions:", err);
     }
   }
 
-  async function addQuestion() {
-    const type = typeQuestion.value;
-    const questionText = document.getElementById("questionText").value;
-    const note = parseInt(document.getElementById("note").value);
-    const duration = parseInt(document.getElementById("duration").value);
-
-    let media = null;
-    const mediaFileInput = document.getElementById("mediaFile");
-    const mediaURLInput = document.getElementById("mediaURL").value;
-
-    if (mediaFileInput && mediaFileInput.files.length > 0) {
-      media = mediaFileInput.files[0].name; // Ici on enregistre juste le nom du fichier (upload à gérer plus tard)
-    } else if (mediaURLInput) {
-      media = mediaURLInput;
+  window.deleteQuestion = async function (id) {
+    if (!confirm("Supprimer cette question ?")) return;
+    try {
+      const res = await fetch(`http://localhost:3001/api/questions/${id}`, {
+        method: "DELETE",
+      });
+      if (res.ok) {
+        await loadQuestions();
+      } else {
+        alert("Erreur lors de la suppression.");
+      }
+    } catch (err) {
+      console.error("Erreur suppression:", err);
     }
+  };
 
-    if (!questionText || isNaN(note) || isNaN(duration)) {
-      alert("Veuillez remplir tous les champs obligatoires.");
-      return;
+  window.editQuestion = async function (id) {
+    try {
+      const res = await fetch(`http://localhost:3001/api/questions/${id}`);
+      const data = await res.json();
+      if (data) {
+        editingQuestionId = id;
+        typeSelect.value = data.type;
+        renderForm(data.type, data);
+      }
+    } catch (err) {
+      console.error("Erreur chargement question à modifier:", err);
     }
+  };
 
-    let question = { 
-      type, 
-      enonce: questionText, 
-      media,
-      note,
-      duration
-    };
+  cancelEditBtn.addEventListener("click", () => {
+    editingQuestionId = null;
+    renderForm(typeSelect.value);
+  });
+
+  typeSelect.addEventListener("change", () => {
+    renderForm(typeSelect.value);
+  });
+
+  renderForm(typeSelect.value);
+  loadQuestions();
+
+  addQuestionBtn.addEventListener("click", async () => {
+    const type = typeSelect.value;
+    const text = document.getElementById("questionText").value;
+    const note = document.getElementById("note").value;
+    const duration = document.getElementById("duration").value;
+    const mediaFile = document.getElementById("media").files[0];
+
+    const formData = new FormData();
+    formData.append("examId", examId);
+    formData.append("type", type);
+    formData.append("text", text);
+    formData.append("note", note);
+    formData.append("duration", duration);
+    if (mediaFile) formData.append("media", mediaFile);
 
     if (type === "qcm") {
-      question.options = [
-        document.getElementById("option1").value,
-        document.getElementById("option2").value,
-        document.getElementById("option3").value,
-        document.getElementById("option4").value
-      ];
+      const options = [...document.querySelectorAll(".qcm-option")].map(input => input.value);
+      const correct = [...document.querySelectorAll(".qcm-correct")].map(cb => cb.checked);
 
-      question.correct = [];
-      for (let i = 1; i <= 4; i++) {
-        if (document.getElementById(`correct${i}`).checked) {
-          question.correct.push(i); // On stocke les numéros des bonnes réponses
-        }
-      }
-    } else if (type === "directe") {
-      question.reponse = document.getElementById("answer").value;
-      question.tolerance = parseInt(document.getElementById("tolerance").value) || 0;
+      formData.append("options", JSON.stringify(options));
+      formData.append("correct", JSON.stringify(correct));
+    } else {
+      const expected = document.getElementById("expectedAnswer").value;
+      const tolerance = document.getElementById("tolerance").value;
+
+      formData.append("expectedAnswer", expected);
+      formData.append("tolerance", tolerance);
     }
 
     try {
-      const res = await fetch(`${API_BASE_URL}/exams/${exam.id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          questions: [...exam.questions, question]
-        })
+      const url = editingQuestionId
+        ? `http://localhost:3001/api/questions/${editingQuestionId}`
+        : "http://localhost:3001/api/questions";
+      const method = editingQuestionId ? "PUT" : "POST";
+
+      const res = await fetch(url, {
+        method,
+        body: formData,
       });
 
+      const result = await res.json();
       if (res.ok) {
-        exam.questions.push(question);
-        localStorage.setItem("currentExam", JSON.stringify(exam));
-        alert("Question ajoutée !");
-        renderQuestionForm(); // reset pour ajouter une autre question
+        alert(editingQuestionId ? "Question mise à jour !" : "Question ajoutée !");
+        renderForm(type);
+        loadQuestions();
+        editingQuestionId = null;
       } else {
-        alert("Erreur lors de l'ajout de la question.");
+        alert("Erreur : " + result.error);
       }
-    } catch (error) {
-      console.error("Erreur réseau :", error);
-      alert("Erreur réseau !");
+    } catch (err) {
+      console.error("Erreur réseau:", err);
+      alert("Erreur réseau.");
     }
-  }
+  });
 
-  function finishExam() {
-    localStorage.removeItem("currentExam");
-    alert("Examen finalisé !");
+  finishExamBtn.addEventListener("click", () => {
+    alert("✅ Examen créé avec succès !");
+    const exam = JSON.parse(localStorage.getItem("currentExam"));
+    if (exam) {
+      localStorage.setItem("newlyCreatedExam", JSON.stringify(exam));
+    }
     window.location.href = "dashboard.html";
-  }
+  });
 });
