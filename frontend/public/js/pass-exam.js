@@ -13,6 +13,38 @@ document.addEventListener("DOMContentLoaded", async () => {
     const res = await fetch(`http://localhost:3001/api/pass/verify?examId=${examId}&code=${code}&userId=${user.id}`);
     const data = await res.json();
 
+    try {
+      const res = await fetch(`http://localhost:3001/api/pass/verify?examId=${examId}&code=${code}&userId=${user.id}`);
+      const data = await res.json();
+    
+      // ✅ Si l'utilisateur a déjà passé l'examen
+      if (res.status === 403 && data.alreadyPassed) {
+        document.getElementById("examArea").innerHTML = `
+          <div class="question-card">
+            <h3>${data.examTitle}</h3>
+            <p style="color: red;">⚠️ Vous avez déjà passé cet examen.</p>
+            <button class="btn btn-secondary" onclick="window.location.href='dashboard.html'">Retour au dashboard</button>
+          </div>
+        `;
+        return;
+      }
+    
+      if (res.ok) {
+        document.getElementById("examArea").innerHTML = `
+          <div class="question-card">
+            <h3>${data.title}</h3>
+            <p>Bienvenue ${user.name}. Cliquez sur "Démarrer" pour commencer.</p>
+            <button class="btn btn-primary" onclick="startExam(${examId}, ${user.id})">Démarrer</button>
+          </div>
+        `;
+      } else {
+        document.getElementById("examArea").innerHTML = `<p style='color:red;'>${data.error}</p>`;
+      }
+    } catch (err) {
+      document.getElementById("examArea").innerHTML = "<p style='color:red;'>Erreur réseau.</p>";
+    }
+    
+
     if (res.ok) {
       document.getElementById("examArea").innerHTML = `
         <div class="question-card">

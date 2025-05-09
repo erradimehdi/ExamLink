@@ -6,6 +6,16 @@ function gotologIn() {
     window.location.href = window.location.origin + "/frontend/views/login.html";
 }
 
+function goBack() {
+    window.history.back();
+}
+
+function logout() {
+    localStorage.removeItem("user");     // ✅ supprime les infos utilisateur (où est stocké le JWT)
+    localStorage.removeItem("token");    // ❗ si tu stockes le token séparément
+    window.location.href = "index.html"; // 🔁 redirige vers la page de login
+}
+  
 // function logIn() {
 //     document.body.classList.add('page-transition');
 //     setTimeout(function () {

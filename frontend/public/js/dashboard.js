@@ -13,8 +13,32 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (exams.length === 0) {
       createdExamsList.innerHTML = "<li>Aucun examen créé pour l'instant.</li>";
-      return;
+    } else {
+      createdExamsList.innerHTML = "";
+    
+      exams.forEach((exam) => {
+        const isNew = newlyCreated && Number(newlyCreated.examId) === Number(exam.id);
+        const examUrl = `${window.location.origin}/views/pass-exam.html?examId=${exam.id}&code=${exam.exam_code}`;
+    
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <div style="border: 1px solid ${isNew ? '#6fcf97' : '#ccc'}; padding: 10px; border-radius: 8px; margin-bottom: 10px; background-color: ${isNew ? '#e7f9e9' : '#fff'}">
+            <p style="margin: 0;">
+              <strong>${exam.title}</strong> 
+              ${isNew ? '<span style="color: green; font-weight: bold;">(Dernier examen créé)</span>' : ''}
+            </p>
+            <p style="margin: 0;">
+              🔗 <input type="text" value="${examUrl}" readonly style="width: 60%; padding: 5px;">
+              <button onclick="copyExamLink('${examUrl}')">Copier</button>
+              <button onclick="editExam(${exam.id}, '${exam.exam_code}')">Modifier</button>
+              <button onclick="deleteExam(${exam.id})">Supprimer</button>
+            </p>
+          </div>
+        `;
+        createdExamsList.appendChild(li);
+      });
     }
+    
 
     createdExamsList.innerHTML = "";
 
@@ -48,10 +72,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
   // ✅ Section des examens passés
 const passedList = document.getElementById("examensList");
+console.log("Utilisateur connecté :", user);
+
 
 fetch(`http://localhost:3001/api/responses/by-user/${user.id}`)
   .then(res => res.json())
   .then(data => {
+    console.log("Examens passés récupérés :", data);
     if (data.length === 0) {
       passedList.innerHTML = "<li>Aucun examen passé pour l'instant.</li>";
       return;
@@ -129,3 +156,4 @@ function goToExam() {
     alert("Lien invalide. Vérifiez le format.");
   }
 }
+
