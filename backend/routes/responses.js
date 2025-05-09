@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db");
 
-// 🔧 Fonction pour la distance de Levenshtein (erreurs de frappe/casse)
+// 🔧 Fonction pour la distance de Levenshtein (tolérance frappe/casse)
 function levenshteinDistance(a, b) {
   const dp = Array.from({ length: a.length + 1 }, () => []);
   for (let i = 0; i <= a.length; i++) dp[i][0] = i;
@@ -21,15 +21,15 @@ function levenshteinDistance(a, b) {
   return dp[a.length][b.length];
 }
 
-// ✅ POST /api/responses — Enregistrement des réponses + score + protection
+// ✅ POST /api/responses — Enregistrement des réponses + score + géolocalisation
 router.post("/", (req, res) => {
-  const { examId, userId, responses } = req.body;
+  const { examId, userId, responses, geolocation } = req.body;
 
   if (!examId || !userId || !Array.isArray(responses)) {
     return res.status(400).json({ error: "Données manquantes ou invalides." });
   }
 
-  // 🔒 Vérifier si déjà passé
+  // Vérifier si déjà passé
   const checkSql = "SELECT COUNT(*) AS count FROM responses WHERE exam_id = ? AND user_id = ?";
   db.query(checkSql, [examId, userId], (err, checkResult) => {
     if (err) return res.status(500).json({ error: "Erreur vérification passage." });
@@ -37,7 +37,7 @@ router.post("/", (req, res) => {
       return res.status(403).json({ error: "Examen déjà passé." });
     }
 
-    // ✅ Enregistrer les réponses
+    // Enregistrer les réponses
     const insertSql = "INSERT INTO responses (exam_id, user_id, question_id, answer, timestamp) VALUES ?";
     const values = responses.map(r => [
       examId,
@@ -50,7 +50,7 @@ router.post("/", (req, res) => {
     db.query(insertSql, [values], (errInsert) => {
       if (errInsert) return res.status(500).json({ error: "Erreur enregistrement réponses." });
 
-      // ✅ Récupérer questions pour correction
+      // Récupérer les questions pour correction
       const qIds = responses.map(r => r.questionId);
       const placeholders = qIds.map(() => "?").join(",");
       const fetchSql = `
@@ -97,9 +97,15 @@ router.post("/", (req, res) => {
 
         const finalScore = Math.round((totalScore / correctRows.length) * 100);
 
-        // ✅ Sauvegarder score
-        const storeSql = `INSERT INTO results (exam_id, user_id, score, timestamp) VALUES (?, ?, ?, ?)`;
-        db.query(storeSql, [examId, userId, finalScore, new Date()], (errSave) => {
+        // ✅ Enregistrer score et géolocalisation
+        const lat = geolocation?.lat || null;
+        const lng = geolocation?.lng || null;
+
+        const storeSql = `
+          INSERT INTO results (exam_id, user_id, score, timestamp, latitude, longitude)
+          VALUES (?, ?, ?, ?, ?, ?)
+        `;
+        db.query(storeSql, [examId, userId, finalScore, new Date(), lat, lng], (errSave) => {
           if (errSave) return res.status(500).json({ error: "Erreur stockage résultat." });
 
           return res.status(201).json({
@@ -112,7 +118,7 @@ router.post("/", (req, res) => {
   });
 });
 
-// ✅ GET /api/responses/by-user/:userId — Récupérer scores par utilisateur
+// ✅ GET /api/responses/by-user/:userId — Afficher examens passés
 router.get("/by-user/:userId", (req, res) => {
   const userId = req.params.userId;
 

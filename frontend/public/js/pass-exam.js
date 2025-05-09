@@ -13,37 +13,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     const res = await fetch(`http://localhost:3001/api/pass/verify?examId=${examId}&code=${code}&userId=${user.id}`);
     const data = await res.json();
 
-    try {
-      const res = await fetch(`http://localhost:3001/api/pass/verify?examId=${examId}&code=${code}&userId=${user.id}`);
-      const data = await res.json();
-    
-      // ✅ Si l'utilisateur a déjà passé l'examen
-      if (res.status === 403 && data.alreadyPassed) {
-        document.getElementById("examArea").innerHTML = `
-          <div class="question-card">
-            <h3>${data.examTitle}</h3>
-            <p style="color: red;">⚠️ Vous avez déjà passé cet examen.</p>
-            <button class="btn btn-secondary" onclick="window.location.href='dashboard.html'">Retour au dashboard</button>
-          </div>
-        `;
-        return;
-      }
-    
-      if (res.ok) {
-        document.getElementById("examArea").innerHTML = `
-          <div class="question-card">
-            <h3>${data.title}</h3>
-            <p>Bienvenue ${user.name}. Cliquez sur "Démarrer" pour commencer.</p>
-            <button class="btn btn-primary" onclick="startExam(${examId}, ${user.id})">Démarrer</button>
-          </div>
-        `;
-      } else {
-        document.getElementById("examArea").innerHTML = `<p style='color:red;'>${data.error}</p>`;
-      }
-    } catch (err) {
-      document.getElementById("examArea").innerHTML = "<p style='color:red;'>Erreur réseau.</p>";
+    if (res.status === 403 && data.alreadyPassed) {
+      document.getElementById("examArea").innerHTML = `
+        <div class="question-card">
+          <h3>${data.examTitle}</h3>
+          <p style="color: red;">⚠️ Vous avez déjà passé cet examen.</p>
+          <button class="btn btn-secondary" onclick="window.location.href='dashboard.html'">Retour au dashboard</button>
+        </div>
+      `;
+      return;
     }
-    
 
     if (res.ok) {
       document.getElementById("examArea").innerHTML = `
@@ -67,11 +46,36 @@ let currentQuestion = null;
 let questionsGlobal = [];
 let userIdGlobal = null;
 let examIdGlobal = null;
+let userLocation = { latitude: null, longitude: null };
 
 async function startExam(examId, userId) {
   examIdGlobal = examId;
   userIdGlobal = userId;
 
+  // 🔁 Réinitialiser la position à chaque clic
+  userLocation = { latitude: null, longitude: null };
+
+  // Forcer une nouvelle demande de géolocalisation
+  if (navigator.permissions) {
+    try {
+      const status = await navigator.permissions.query({ name: "geolocation" });
+
+      if (status.state === "granted" || status.state === "prompt") {
+        getLocationAndStart(examId);
+      } else {
+        alert("Veuillez activer la géolocalisation dans votre navigateur.");
+        getLocationAndStart(examId); // Tente quand même
+      }
+    } catch (e) {
+      getLocationAndStart(examId); // fallback si navigateur ne supporte pas permissions API
+    }
+  } else {
+    getLocationAndStart(examId);
+  }
+}
+
+
+async function continueExamStart(examId) {
   const res = await fetch(`http://localhost:3001/api/pass/questions?examId=${examId}`);
   questionsGlobal = await res.json();
 
@@ -83,6 +87,26 @@ async function startExam(examId, userId) {
   document.getElementById("examArea").style.display = "none";
   launchExamFlow(questionsGlobal);
 }
+
+function getLocationAndStart(examId) {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        userLocation.latitude = position.coords.latitude;
+        userLocation.longitude = position.coords.longitude;
+        continueExamStart(examId);
+      },
+      (error) => {
+        alert("Géolocalisation refusée. L'examen commencera sans localisation.");
+        continueExamStart(examId);
+      }
+    );
+  } else {
+    alert("Géolocalisation non supportée par ce navigateur.");
+    continueExamStart(examId);
+  }
+}
+
 
 function launchExamFlow(questions) {
   const container = document.getElementById("questionContainer");
@@ -155,7 +179,11 @@ async function submitAnswers() {
       examId: examIdGlobal,
       userId: userIdGlobal,
       responses: collectedResponses,
-    }),
+      geolocation: {
+        lat: userLocation.latitude,
+        lng: userLocation.longitude
+      }
+    }),    
   });
 
   const result = await res.json();
@@ -193,14 +221,4 @@ function renderMedia(path) {
   } else {
     return `<p>Média non supporté</p>`;
   }
-}
-
-if (data.alreadyPassed) {
-  document.getElementById("examArea").innerHTML = `
-    <div class="question-card">
-      <h3>${data.examTitle}</h3>
-      <p style="color: red;">⚠️ Vous avez déjà passé cet examen.</p>
-      <button class="btn btn-secondary" onclick="window.location.href='dashboard.html'">Retour au dashboard</button>
-    </div>
-  `;
 }
