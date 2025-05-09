@@ -1,90 +1,54 @@
-# 🎓 ExamLink – Plateforme d'examens en ligne
+# ExamLink - Plateforme d'examens en ligne
 
-**ExamLink** est une plateforme web intuitive permettant aux utilisateurs de créer et passer des examens en ligne de manière sécurisée et fluide.
+ExamLink est une application web permettant aux enseignants de créer des examens en ligne et aux étudiants de les passer via un lien unique. Le projet a été développé en HTML, CSS, JavaScript (frontend) et Node.js avec Express et MySQL (backend).
 
----
+## Fonctionnalités principales :
 
-## 🔧 Technologies utilisées
+✅ Inscription et connexion des utilisateurs (avec session JWT)  
+✅ Création d'examens avec titre, description et lien d'accès  
+✅ Ajout de questions de type QCM ou directe avec média (image, audio, vidéo)  
+✅ Passage d'examen avec affichage question par question + minuterie  
+✅ Correction automatique avec calcul du score final sur 100  
+✅ Empêche un utilisateur de repasser le même examen  
+✅ Enregistrement de la géolocalisation de l'utilisateur au moment du passage  
+✅ Affichage dans le dashboard :
+   - Examens créés (avec lien copiable)
+   - Examens passés (avec score et date)
 
-- **Frontend :** HTML, CSS, JavaScript
-- **Backend (à venir) :** Node.js, Express.js
-- **Base de données :** MySQL
-- **Versionnement :** Git + GitHub
+## Technologies utilisées :
 
----
+Frontend :
+- HTML / CSS / JS Vanilla
 
-## 📁 Structure du projet 
+Backend :
+- Node.js + Express
+- MySQL
+- Multer (pour l’upload de fichiers)
+- JWT (authentification sécurisée)
+- Levenshtein (tolérance aux erreurs sur réponses directes)
 
-exam_platform/
-├── backend/
-│   ├── config/
-│   │   └── db.js
-│   ├── routes/
-│   │   ├── auth.routes.js
-│   │   ├── exams.routes.js
-│   │   └── users.routes.js
-│   ├── controllers/
-│   │   ├── auth.controller.js
-│   │   ├── exams.controller.js
-│   │   └── users.controller.js
-│   ├── models/
-│   │   ├── user.model.js
-│   │   └── exam.model.js
-│   ├── middlewares/
-│   │   └── auth.middleware.js
-│   └── server.js
-│
-├── frontend/
-│   ├── public/
-│   │   ├── css/
-│   │   │   └── style.css
-│   │   ├── js/
-│   │   │   ├── main.js
-│   │   │   ├── create_exam.js
-│   │   │   └── exams.js
-│   │   └── images/
-│   │       └── logo.png
-│   └── views/
-│       ├── index.html
-│       ├── login.html
-│       ├── signup.html
-│       ├── dashboard.html
-│       ├── create_exam.html
-│       ├── take_exam.html
-│       └── exams.html
-│
-├── database.sql
-├── .env
-├── .gitignore
-├── package.json
-├── package-lock.json
-└── README.md
+## Structure des dossiers :
 
-## ✨ Fonctionnalités actuelles
+- `/views/` : pages HTML (dashboard, inscription, passage examen)
+- `/public/` : fichiers statiques (CSS, JS)
+- `/routes/` : routes Express (users, exams, questions, responses)
+- `/uploads/` : stockage des fichiers média (images, vidéos, etc.)
+- `/db.js` : connexion MySQL
 
-- 🎨 Interface responsive et moderne
-- 🧑‍🏫 Interfae Inscriptionet Connexion
-- 📌 Indicateur de page (dots)
-- 🚀 Redirection logique 
+## Pour démarrer :
+
+1. Cloner le projet  
+2. Lancer `npm install`  
+3. Configurer la base de données MySQL  
+4. Lancer le serveur avec `node server.js`  
+5. Accéder à l’interface via `http://localhost:3001`
 
 ---
 
-## 📦 En cours de développement
+Projet réalisé dans le cadre d’un travail universitaire sur la gestion d’examens en ligne.
 
-- [ ] Connexion avec backend Node.js + Express
-- [ ] Stockage sécurisé en base de données
-- [ ] Création et gestion des examens (enseignants)
-- [ ] Système de notation et tableau de bord étudiant
 
----
-
-## 🤝 Contributeurs
+## 🤝 Contributeur
 
 - Mehdi Erradi
 
----
-✅ Ajout fonctionnalité d'inscription côté JSON et backend :
-- Création du formulaire signup.html avec champs obligatoires
-- Intégration de signup.js pour appel fetch() vers JSON Server ou backend
-- Mise en place du backend Node.js avec Express, MySQL et route /api/users
-- Vérification email existant et insertion dans la BDD
