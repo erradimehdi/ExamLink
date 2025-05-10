@@ -46,6 +46,12 @@ router.post("/", (req, res) => {
     return res.status(400).json({ error: "Tous les champs sont obligatoires." });
   }
 
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({ error: "Format d'email invalide." });
+  }
+
+
   //  Vérifie que l'email n'est pas déjà utilisé
   const checkQuery = "SELECT * FROM users WHERE email = ?";
   db.query(checkQuery, [email], (err, results) => {

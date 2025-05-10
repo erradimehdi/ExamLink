@@ -15,7 +15,13 @@ async function signupUser(event) {
         alert("Mot de passe trop court !");
         return;
     }
-  
+    
+    if (!isValidEmail(email)) {
+        alert("Adresse e-mail invalide !");
+        return;
+    }
+      
+
     try {
         const check = await fetch(`${API_BASE_URL}/users?email=${encodeURIComponent(email)}`);
         const existingUsers = await check.json();
@@ -53,5 +59,10 @@ async function signupUser(event) {
         console.error("Erreur réseau :", error);
         alert("Erreur de connexion au serveur.");
     }
+}
+
+function isValidEmail(email) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    return regex.test(email);
 }
   

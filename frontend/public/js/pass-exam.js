@@ -52,7 +52,7 @@ async function startExam(examId, userId) {
   examIdGlobal = examId;
   userIdGlobal = userId;
 
-  // 🔁 Réinitialiser la position à chaque clic
+  // Réinitialiser la position à chaque clic
   userLocation = { latitude: null, longitude: null };
 
   // Forcer une nouvelle demande de géolocalisation
